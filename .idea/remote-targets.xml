@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteTargetsManager">
+    <option name="projectDefaultTargetUuid" value="9812c714-b7a9-4a95-81a6-1a16cb2f3313" />
+    <targets>
+      <target name="WSL - Ubuntu-20.04" type="wsl" uuid="9812c714-b7a9-4a95-81a6-1a16cb2f3313">
+        <config>
+          <option name="distributionMsId" value="Ubuntu-20.04" />
+          <option name="projectRootOnTarget" value="/mnt/d/apps/GoLand 2022.2.2/jbr/bin&#10;/gomall" />
+        </config>
+        <ContributedStateBase type="GoLanguageRuntime">
+          <config>
+            <option name="goRoot" value="/root/go/bin/go" />
+          </config>
+        </ContributedStateBase>
+      </target>
+    </targets>
+  </component>
+</project>
