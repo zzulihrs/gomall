@@ -2,13 +2,11 @@ package middleware
 
 import (
 	"context"
+	"github.com/cloudwego/biz-demo/gomall/app/frontend/utils"
 	"github.com/cloudwego/hertz/pkg/app"
+
 	"github.com/hertz-contrib/sessions"
 )
-
-type SessionUserIdKey string
-
-const SessionUserId SessionUserIdKey = "user_id"
 
 func GlobalAuth() app.HandlerFunc {
 	return func(ctx context.Context, c *app.RequestContext) {
@@ -18,7 +16,7 @@ func GlobalAuth() app.HandlerFunc {
 			c.Next(ctx)
 			return
 		}
-		ctx = context.WithValue(ctx, SessionUserId, userId)
+		ctx = context.WithValue(ctx, utils.SessionUserId, userId)
 		c.Next(ctx)
 	}
 }
@@ -33,7 +31,7 @@ func Auth() app.HandlerFunc {
 			c.Abort()
 			return
 		}
-		ctx = context.WithValue(ctx, SessionUserId, userId)
+		ctx = context.WithValue(ctx, utils.SessionUserId, userId)
 		c.Next(ctx)
 	}
 }

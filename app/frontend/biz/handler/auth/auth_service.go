@@ -2,6 +2,7 @@ package auth
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/cloudwego/biz-demo/gomall/app/frontend/biz/service"
 	"github.com/cloudwego/biz-demo/gomall/app/frontend/biz/utils"
@@ -21,6 +22,7 @@ func Register(ctx context.Context, c *app.RequestContext) {
 		utils.SendErrResponse(ctx, c, consts.StatusOK, err)
 		return
 	}
+	fmt.Println("req:", req)
 
 	resp := &common.Empty{}
 	resp, err = service.NewRegisterService(ctx, c).Run(&req)
@@ -43,12 +45,13 @@ func Login(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 
-	redirect, err := service.NewLoginService(ctx, c).Run(&req)
+	resp, err := service.NewLoginService(ctx, c).Run(&req)
+
 	if err != nil {
 		utils.SendErrResponse(ctx, c, consts.StatusOK, err)
 		return
 	}
-	c.Redirect(consts.StatusOK, []byte(redirect))
+	c.Redirect(consts.StatusOK, []byte(resp))
 
 	//utils.SendSuccessResponse(ctx, c, consts.StatusOK, "done!")
 }

@@ -2,6 +2,8 @@ package service
 
 import (
 	"context"
+	"github.com/cloudwego/biz-demo/gomall/app/frontend/infra/rpc"
+	"github.com/cloudwego/biz-demo/gomall/rpc_gen/kitex_gen/user"
 	"github.com/hertz-contrib/sessions"
 
 	auth "github.com/cloudwego/biz-demo/gomall/app/frontend/hertz_gen/frontend/auth"
@@ -18,9 +20,16 @@ func NewLoginService(Context context.Context, RequestContext *app.RequestContext
 }
 
 func (h *LoginService) Run(req *auth.LoginReq) (redirect string, err error) {
+	resp, err := rpc.UserClient.Login(h.Context, &user.LoginReq{
+		Email:    req.Email,
+		Password: req.Password,
+	})
+	if err != nil {
+		return "", err
+	}
 
 	session := sessions.Default(h.RequestContext)
-	session.Set("user_id", 1)
+	session.Set("user_id", resp.UserId)
 	err = session.Save()
 
 	redirect = "/"

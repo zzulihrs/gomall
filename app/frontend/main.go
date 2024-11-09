@@ -4,6 +4,7 @@ package main
 
 import (
 	"context"
+	"github.com/cloudwego/biz-demo/gomall/app/frontend/infra/rpc"
 	"github.com/cloudwego/biz-demo/gomall/app/frontend/middleware"
 	"os"
 
@@ -27,6 +28,7 @@ import (
 
 func main() {
 	_ = godotenv.Load()
+	rpc.Init()
 	// init dal
 	// dal.Init()
 	address := conf.GetConf().Hertz.Address
