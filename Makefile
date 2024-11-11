@@ -4,7 +4,7 @@ gen-demo-proto:
 
 
 gen-frontend:
-	@cd app/frontend && cwgo server --type HTTP --idl ../../idl/frontend/home.proto --service frontend --module github.com/cloudwego/biz-demo/gomall/app/frontend -I ../../idl/frontend/auto_page.proto
+	@cd app/frontend && cwgo server --type HTTP --idl ../../idl/frontend/home.proto --service frontend --module github.com/cloudwego/biz-demo/gomall/app/frontend -I ../../idl
 
 
 gen_rpc:
@@ -17,3 +17,6 @@ gen_app_user:
 gen_app_product:
 	@cd rpc_gen && cwgo client --type RPC --service product --module github.com/cloudwego/biz-demo/gomall/rpc_gen --I ../idl --idl ../idl/product.proto
 	@cd app/product && cwgo server --type RPC --service product --module github.com/cloudwego/biz-demo/gomall/app/product --pass "-use github.com/cloudwego/biz-demo/gomall/rpc_gen/kitex_gen" -I ../../idl --idl ../../idl/product.proto
+
+gen_category:
+	@cd app/frontend && cwgo server --type HTTP --idl ../../idl/frontend/product_page.proto --service frontend --module github.com/cloudwego/biz-demo/gomall/app/frontend -I ../../idl
