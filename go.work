@@ -1,11 +1,12 @@
 go 1.21.0
 
 use (
+	./app/cart
 	./app/frontend
-	./app/user
-	./rpc_gen
-	./common
 	./app/product
+	./app/user
+	./common
+	./rpc_gen
 )
 
 replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
