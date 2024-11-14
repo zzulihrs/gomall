@@ -4,6 +4,7 @@ import (
 	"github.com/cloudwego/biz-demo/gomall/app/frontend/conf"
 	frontendUtils "github.com/cloudwego/biz-demo/gomall/app/frontend/utils"
 	"github.com/cloudwego/biz-demo/gomall/rpc_gen/kitex_gen/cart/cartservice"
+	"github.com/cloudwego/biz-demo/gomall/rpc_gen/kitex_gen/checkout/checkoutservice"
 	"github.com/cloudwego/biz-demo/gomall/rpc_gen/kitex_gen/product/productcatalogservice"
 	"github.com/cloudwego/biz-demo/gomall/rpc_gen/kitex_gen/user/userservice"
 	"github.com/cloudwego/kitex/client"
@@ -12,10 +13,11 @@ import (
 )
 
 var (
-	UserClient    userservice.Client
-	ProductClient productcatalogservice.Client
-	CartClient    cartservice.Client
-	once          sync.Once // 保证只初始化一次
+	UserClient     userservice.Client
+	ProductClient  productcatalogservice.Client
+	CartClient     cartservice.Client
+	CheckoutClient checkoutservice.Client
+	once           sync.Once // 保证只初始化一次
 )
 
 func Init() {
@@ -23,6 +25,7 @@ func Init() {
 		initUserClient()
 		initProductClient()
 		initCartClient()
+		initCheckoutClient()
 	})
 }
 
@@ -48,5 +51,13 @@ func initCartClient() {
 	frontendUtils.MustHandleError(err)
 
 	CartClient, err = cartservice.NewClient("cart", client.WithResolver(r))
+	frontendUtils.MustHandleError(err)
+}
+
+func initCheckoutClient() {
+	r, err := consul.NewConsulResolver(conf.GetConf().Hertz.RegistryAddr)
+	frontendUtils.MustHandleError(err)
+
+	CheckoutClient, err = checkoutservice.NewClient("checkout", client.WithResolver(r))
 	frontendUtils.MustHandleError(err)
 }

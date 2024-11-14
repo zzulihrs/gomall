@@ -4,7 +4,7 @@ gen-demo-proto:
 
 
 gen-frontend:
-	@cd app/frontend && cwgo server --type HTTP --idl ../../idl/frontend/cart_page.proto --service frontend --module github.com/cloudwego/biz-demo/gomall/app/frontend -I ../../idl
+	@cd app/frontend && cwgo server --type HTTP --idl ../../idl/frontend/checkout_page.proto --service frontend --module github.com/cloudwego/biz-demo/gomall/app/frontend -I ../../idl
 
 
 gen_rpc:
