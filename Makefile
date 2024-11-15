@@ -35,6 +35,10 @@ gen_checkout:
 	@cd rpc_gen && cwgo client --type RPC --service checkout --module github.com/cloudwego/biz-demo/gomall/rpc_gen --I ../idl --idl ../idl/checkout.proto
 	@cd app/checkout && cwgo server --type RPC --service checkout --module github.com/cloudwego/biz-demo/gomall/app/checkout --pass "-use github.com/cloudwego/biz-demo/gomall/rpc_gen/kitex_gen" -I ../../idl --idl ../../idl/checkout.proto
 
+gen_order:
+	@cd rpc_gen && cwgo client --type RPC --service order --module github.com/cloudwego/biz-demo/gomall/rpc_gen --I ../idl --idl ../idl/order.proto
+	@cd app/order && cwgo server --type RPC --service order --module github.com/cloudwego/biz-demo/gomall/app/order --pass "-use github.com/cloudwego/biz-demo/gomall/rpc_gen/kitex_gen" -I ../../idl --idl ../../idl/order.proto
+
 
 run: ## run {svc} server. example: make run svc=product
 	@scripts/run.sh ${svc}
