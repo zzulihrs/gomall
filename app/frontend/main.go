@@ -6,6 +6,9 @@ import (
 	"context"
 	"github.com/cloudwego/biz-demo/gomall/app/frontend/infra/rpc"
 	"github.com/cloudwego/biz-demo/gomall/app/frontend/middleware"
+	frontendUtils "github.com/cloudwego/biz-demo/gomall/app/frontend/utils"
+	"github.com/cloudwego/biz-demo/gomall/common/mtl"
+	prometheus "github.com/hertz-contrib/monitor-prometheus"
 	"os"
 
 	"github.com/cloudwego/biz-demo/gomall/app/frontend/biz/router"
@@ -26,13 +29,28 @@ import (
 	"github.com/joho/godotenv"
 )
 
+var (
+	CurrentServiceName = frontendUtils.ServiceName
+	RegistryAddr       = conf.GetConf().Hertz.RegistryAddr
+	MetricsPort        = conf.GetConf().Hertz.MetricsPort
+)
+
 func main() {
 	_ = godotenv.Load()
 	rpc.Init()
+	consul, registryInfo := mtl.InitMetric(CurrentServiceName, MetricsPort, RegistryAddr)
+	defer consul.Deregister(registryInfo)
 	// init dal
 	// dal.Init()
 	address := conf.GetConf().Hertz.Address
-	h := server.New(server.WithHostPorts(address))
+	h := server.New(server.WithHostPorts(address),
+		server.WithTracer(prometheus.NewServerTracer(
+			"",
+			"",
+			prometheus.WithRegistry(mtl.Registry),
+			prometheus.WithDisableServer(true),
+		)),
+	)
 
 	registerMiddleware(h)
 

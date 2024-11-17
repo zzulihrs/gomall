@@ -1,0 +1,371 @@
+
+  __    _   ___  
+ / /\  | | | |_) 
+/_/--\ |_| |_| \_ v1.61.1, built with Go go1.23.2
+
+watching .
+watching app
+watching app/cart
+watching app/cart/biz
+watching app/cart/biz/dal
+watching app/cart/biz/dal/mysql
+watching app/cart/biz/dal/redis
+watching app/cart/biz/model
+watching app/cart/biz/service
+watching app/cart/conf
+watching app/cart/conf/dev
+watching app/cart/conf/online
+watching app/cart/conf/test
+watching app/cart/infra
+watching app/cart/infra/rpc
+watching app/cart/script
+watching app/cart/tmp
+watching app/cart/utils
+watching app/checkout
+watching app/checkout/biz
+watching app/checkout/biz/dal
+watching app/checkout/biz/dal/mysql
+watching app/checkout/biz/dal/redis
+watching app/checkout/biz/service
+watching app/checkout/conf
+watching app/checkout/conf/dev
+watching app/checkout/conf/online
+watching app/checkout/conf/test
+watching app/checkout/infra
+watching app/checkout/infra/rpc
+watching app/checkout/script
+watching app/checkout/tmp
+watching app/frontend
+watching app/frontend/biz
+watching app/frontend/biz/dal
+watching app/frontend/biz/dal/mysql
+watching app/frontend/biz/dal/redis
+watching app/frontend/biz/handler
+watching app/frontend/biz/handler/auth
+watching app/frontend/biz/handler/cart
+watching app/frontend/biz/handler/category
+watching app/frontend/biz/handler/checkout
+watching app/frontend/biz/handler/home
+watching app/frontend/biz/handler/order
+watching app/frontend/biz/handler/product
+watching app/frontend/biz/router
+watching app/frontend/biz/router/auth
+watching app/frontend/biz/router/cart
+watching app/frontend/biz/router/category
+watching app/frontend/biz/router/checkout
+watching app/frontend/biz/router/home
+watching app/frontend/biz/router/order
+watching app/frontend/biz/router/product
+watching app/frontend/biz/service
+watching app/frontend/biz/utils
+watching app/frontend/conf
+watching app/frontend/conf/dev
+watching app/frontend/conf/online
+watching app/frontend/conf/test
+watching app/frontend/hertz_gen
+watching app/frontend/hertz_gen/api
+watching app/frontend/hertz_gen/frontend
+watching app/frontend/hertz_gen/frontend/auth
+watching app/frontend/hertz_gen/frontend/cart
+watching app/frontend/hertz_gen/frontend/category
+watching app/frontend/hertz_gen/frontend/checkout
+watching app/frontend/hertz_gen/frontend/common
+watching app/frontend/hertz_gen/frontend/home
+watching app/frontend/hertz_gen/frontend/order
+watching app/frontend/hertz_gen/frontend/product
+watching app/frontend/hertz_gen/frontend_cart
+watching app/frontend/infra
+watching app/frontend/infra/rpc
+watching app/frontend/log
+watching app/frontend/middleware
+watching app/frontend/script
+watching app/frontend/static
+watching app/frontend/static/css
+watching app/frontend/static/image
+watching app/frontend/static/js
+watching app/frontend/template
+watching app/frontend/tmp
+watching app/frontend/types
+watching app/frontend/utils
+watching app/order
+watching app/order/biz
+watching app/order/biz/dal
+watching app/order/biz/dal/mysql
+watching app/order/biz/dal/redis
+watching app/order/biz/model
+watching app/order/biz/service
+watching app/order/conf
+watching app/order/conf/dev
+watching app/order/conf/online
+watching app/order/conf/test
+watching app/order/script
+watching app/order/tmp
+watching app/payment
+watching app/payment/biz
+watching app/payment/biz/dal
+watching app/payment/biz/dal/mysql
+watching app/payment/biz/dal/redis
+watching app/payment/biz/model
+watching app/payment/biz/service
+watching app/payment/conf
+watching app/payment/conf/dev
+watching app/payment/conf/online
+watching app/payment/conf/test
+watching app/payment/script
+watching app/payment/tmp
+watching app/product
+watching app/product/biz
+watching app/product/biz/dal
+watching app/product/biz/dal/mysql
+watching app/product/biz/dal/redis
+watching app/product/biz/model
+watching app/product/biz/service
+watching app/product/conf
+watching app/product/conf/dev
+watching app/product/conf/online
+watching app/product/conf/test
+watching app/product/script
+watching app/product/tmp
+watching app/user
+watching app/user/biz
+watching app/user/biz/dal
+watching app/user/biz/dal/mysql
+watching app/user/biz/dal/redis
+watching app/user/biz/service
+watching app/user/conf
+watching app/user/conf/dev
+watching app/user/conf/online
+watching app/user/conf/test
+watching app/user/log
+watching app/user/model
+watching app/user/script
+watching app/user/tmp
+watching common
+watching common/clientsuite
+watching common/mtl
+watching common/serversuite
+watching common/utils
+watching db
+watching db/sql
+watching db/sql/ini
+watching demo
+watching demo/demo_proto
+watching demo/demo_proto/biz
+watching demo/demo_proto/biz/dal
+watching demo/demo_proto/biz/dal/mysql
+watching demo/demo_proto/biz/dal/redis
+watching demo/demo_proto/biz/service
+watching demo/demo_proto/conf
+watching demo/demo_proto/conf/dev
+watching demo/demo_proto/conf/online
+watching demo/demo_proto/conf/test
+watching demo/demo_proto/kitex_gen
+watching demo/demo_proto/kitex_gen/pbapi
+watching demo/demo_proto/kitex_gen/pbapi/echoservice
+watching demo/demo_proto/script
+watching demo/demo_thrift
+watching demo/demo_thrift/biz
+watching demo/demo_thrift/biz/dal
+watching demo/demo_thrift/biz/dal/mysql
+watching demo/demo_thrift/biz/dal/redis
+watching demo/demo_thrift/biz/service
+watching demo/demo_thrift/conf
+watching demo/demo_thrift/conf/dev
+watching demo/demo_thrift/conf/online
+watching demo/demo_thrift/conf/test
+watching demo/demo_thrift/kitex_gen
+watching demo/demo_thrift/kitex_gen/api
+watching demo/demo_thrift/kitex_gen/api/echo
+watching demo/demo_thrift/kitex_gen/pbapi
+watching demo/demo_thrift/kitex_gen/pbapi/echobidirectionalstream
+watching demo/demo_thrift/kitex_gen/pbapi/echoclientstream
+watching demo/demo_thrift/kitex_gen/pbapi/echoservice
+watching demo/demo_thrift/kitex_gen/pbapi/echostream
+watching demo/demo_thrift/script
+watching idl
+watching idl/frontend
+watching kitex_gen
+watching rpc_gen
+watching rpc_gen/kitex_gen
+watching rpc_gen/kitex_gen/cart
+watching rpc_gen/kitex_gen/cart/cartservice
+watching rpc_gen/kitex_gen/checkout
+watching rpc_gen/kitex_gen/checkout/checkoutservice
+watching rpc_gen/kitex_gen/order
+watching rpc_gen/kitex_gen/order/orderservice
+watching rpc_gen/kitex_gen/payment
+watching rpc_gen/kitex_gen/payment/paymentservice
+watching rpc_gen/kitex_gen/product
+watching rpc_gen/kitex_gen/product/productcatalogservice
+watching rpc_gen/kitex_gen/user
+watching rpc_gen/kitex_gen/user/userservice
+watching rpc_gen/rpc
+watching rpc_gen/rpc/cart
+watching rpc_gen/rpc/checkout
+watching rpc_gen/rpc/order
+watching rpc_gen/rpc/payment
+watching rpc_gen/rpc/product
+watching rpc_gen/rpc/user
+watching scripts
+!exclude tmp
+building...
+current directory outside modules listed in go.work or their selected dependencies
+failed to build, error: exit status 1
+running...
+/bin/sh: 1: /root/goProjects/gomall/tmp/main: not found
+watching app/email
+watching rpc_gen/rpc/email
+wwatching rpc_gen/kitex_gen/emailwwatching rpc_gen/rpc/email
+watching rpc_gen/krpc_gen/rpc/email/email_cliewatching app/email/biz
+watching app/email/biz/dal
+watching app/email/biz/dal/mysql
+watching app/email/biz/dal/redis
+watching app/email/biz/service
+watching app/email/conf
+watching app/email/conf/dev
+watching app/email/script
+watching app/email/conf/online
+watching app/email/conf/test
+app/email/main.go has changed
+building...
+current directory outside modules listed in go.work or their selected dependencies
+failed to build, error: exit status 1
+running...
+/bin/sh: 1: /root/goProjects/gomall/tmp/main: not found
+Process Exit with Code: 127
+watching app/email/infra
+watching app/email/infra/mq
+app/email/infra/mq/nats.go has changed
+building...
+current directory outside modules listed in go.work or their selected dependencies
+failed to build, error: exit status 1
+running...
+/bin/sh: 1: /root/goProjects/gomall/tmp/main: not found
+Process Exit with Code: 127
+app/email/infra/mq/nats.go has changed
+building...
+current directory outside modules listed in go.work or their selected dependencies
+failed to build, error: exit status 1
+running...
+/bin/sh: 1: /root/goProjects/gomall/tmp/main: not found
+Prcurrent directory outside app/email/infra/mq/nats.go has changed
+building...
+current directory outside modules listed in go.work or their selected dependencies
+failed to build, error: exit status 1
+running...
+/bin/sh: 1: /root/goProjects/gocurrent directory outside modules listed in go.work orapp/email/infra/mq/nats.go has changed
+building...
+current directory outside modules listed in go.work or their selected dependencies
+failed to build, error: exit status 1
+running...
+/bin/sh: 1: /root/goProjects/gomall/tmp/main: not found
+Process Exit with Code: 127
+app/email/infra/mq/nats.go has changed
+building...
+current directory outside modules listed in go.work or their selected dependencies
+failed to build, error: exit status 1
+running...
+/bicurrent directory outside modules listed in go.work or their selected dependenciesapp/email/infra/mq/nats.go has changed
+building...
+current directory outside modules listed in go.work or their selected dependencies
+failed to build, error: exit status 1
+running...
+/bin/sh: 1: /root/goProjects/gomall/tmp/main: not found
+Process Exit with Code: 127
+app/email/infra/mq/nats.go has changed
+building...
+current directory outside modules listed in go.work or their selected dependencicurrent directory outside modules listed in go.work or their selected dependencies
+failed to build, error: exit status 1
+running...
+/bin/app/email/infra/mq/nats.go has changed
+building...
+current directory outside modules listed in go.work or their selected dependencies
+failed to build, error: exit status 1
+running...
+/bin/sh: 1: /root/goProjects/gomall/tmp/main: not found
+Process Exit with Code: 127
+app/email/infra/mq/nats.go has changed
+building...
+current directory outside modules listed in go.work or their selected dependencies
+failed to build, error: exit status 1
+running...
+/bin/sh: 1: /root/goProjects/gomall/tmp/main: not found
+app/email/infra/mq/nats.go has changed
+building...
+current directory outside modules listed in go.work current directory outside modules listed in go.work or their selected dependencies
+failed to build, error: exit status 1
+running...
+/bin/sh: 1: /root/goProjects/gomaapp/email/main.go has changed
+building...
+current directory outside modules listed in go.work or their selected dependencies
+failed to build, error: exit status 1
+running...
+/bin/sh: 1: /root/goProjects/gomall/tmp/main: not found
+watching app/email/infra/notify
+app/email/infra/notify/email.go has changed
+building...
+current directory outside modules listed in go.work or their selected dependencies
+failed to build, error: exit status 1
+running...
+/bin/sh: 1: /root/goProjects/gomall/tmp/main: not found
+Process Exit with Code: 127
+app/email/infra/notify/email.go has changed
+building...
+current directory outside modules listed in go.work or their selected dependencies
+failed to build, error: exit status 1
+running...
+/bin/sh: 1: /root/goProjects/gomall/tmp/main: not found
+Process Exit with Code: 127
+app/email/infra/notify/email.go has changed
+building...
+current directory outsidcurrent directory outside modules listed in go.work or their selected dependencies
+failed to build, error: exit status 1
+running...
+/bin/sh: 1: /root/goProjects/gomall/tmp/main: not found
+app/email/infra/notify/email.go has changed
+builbuildingcurrcurrent directory outside modules listed in go.work or their selected dependencies
+failed to build, error: exit status 1
+running...
+/bin/sh: 1: /root/goProjects/gomall/tmp/main: not found
+app/email/infra/notify/email.go has changed
+building...
+current directory outsidcurrent directory outside modules listed in go.work or their selected dependencies
+failed to build, error: exit status 1
+running...
+/bin/sh: 1: /root/goProjects/gomawatching app/email/biz/consumer
+watching app/email/biz/consumer/email
+app/email/biz/consumer/eapp/email/biz/consumer/email/email.go current directory outsidcurrent directory outside modules listed in go.work or their selected dependencies
+failed to build, error: exit status 1
+running...
+/bin/sh: 1: /root/goProjects/gomall/tmp/main: not found
+Procapp/email/biz/consumer/eapp/email/biz/consumer/email/email.go current directory outside modules listed in go.work or their selected dependencies
+failed to build, error: exit status 1
+running...
+/bin/sh: 1: /root/goProjects/gomall/tmp/main: not found
+Process Exit with Code: app/app/email/biz/consumer/email/email.go has changed
+buildingcurrent directory outside modules listed in go.work or their selected dependencies
+failed to build, error: exit status 1
+running...
+/bin/sh: 1: /root/goProjects/gomall/tmp/main: not found
+app/app/email/biz/consumer/email/email.go has chanbuilbuildingcurrcurrent directory outside modules listed in go.work or their selected dependencifailed to build, error: exit status 1
+running...
+/bin/sh: 1: /root/goProjects/gomall/tmp/main: not found
+Procapp/email/biz/consumer/email/email.go has changed
+building...
+current directory outside modules listed in go.work or their selected dependencies
+failed to build, error: exit status 1
+running...
+/bin/sh: 1: /root/goProjects/gomall/tmp/main: not found
+app/email/biz/consumer/consumer.go has changed
+building...
+current directory outside modules listed in go.work current directory outside modulefailed to build, error: exit status 1
+running...
+/bin/sh: 1: /root/goProjects/gomall/tmp/mrunning...
+/bin/sh: 1: /root/goProjects/gomaapp/email/main.go has changed
+building...
+current directory outside modules listed in go.work or their selected dependencies
+failed to build, error: exit status 1
+running...
+/bin/sh: 1: /root/goProjects/gomall/tmp/main: not found
+Process Exit with Code: 127
+ess Exit with Code: 127

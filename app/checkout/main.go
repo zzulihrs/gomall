@@ -4,13 +4,19 @@ import (
 	"github.com/cloudwego/biz-demo/gomall/app/checkout/conf"
 	"github.com/cloudwego/biz-demo/gomall/app/checkout/infra/mq"
 	"github.com/cloudwego/biz-demo/gomall/app/checkout/infra/rpc"
+	"github.com/cloudwego/biz-demo/gomall/common/mtl"
+	"github.com/cloudwego/biz-demo/gomall/common/serversuite"
 	"github.com/cloudwego/biz-demo/gomall/rpc_gen/kitex_gen/checkout/checkoutservice"
 	"github.com/cloudwego/kitex/pkg/klog"
-	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/server"
 	"github.com/joho/godotenv"
-	consul "github.com/kitex-contrib/registry-consul"
 	"net"
+)
+
+var (
+	CurrentServiceName = conf.GetConf().Kitex.Service
+	RegistryAddr       = conf.GetConf().Registry.RegistryAddress[0]
+	MetricsPort        = conf.GetConf().Kitex.MetricsPort
 )
 
 func main() {
@@ -18,6 +24,7 @@ func main() {
 	_ = godotenv.Load()
 	rpc.InitClient()
 	mq.Init()
+	mtl.InitMetric(CurrentServiceName, MetricsPort, RegistryAddr)
 
 	//dal.Init()
 	rpc.InitClient()
@@ -38,21 +45,9 @@ func kitexInit() (opts []server.Option) {
 	if err != nil {
 		panic(err)
 	}
-	opts = append(opts, server.WithServiceAddr(addr))
-
-	// service info
-	opts = append(opts, server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{
-		ServiceName: conf.GetConf().Kitex.Service,
+	opts = append(opts, server.WithServiceAddr(addr), server.WithSuite(serversuite.CommonServerSuite{
+		CurrentServiceName: CurrentServiceName,
+		RegistryAddr:       RegistryAddr,
 	}))
-
-	r, err := consul.NewConsulRegister(conf.GetConf().Registry.RegistryAddress[0])
-	if err != nil {
-		panic(err)
-	}
-
-	// service info
-	opts = append(opts, server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{
-		ServiceName: conf.GetConf().Kitex.Service,
-	}), server.WithRegistry(r))
 	return
 }

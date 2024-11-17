@@ -3,17 +3,24 @@ package main
 import (
 	"github.com/cloudwego/biz-demo/gomall/app/payment/biz/dal"
 	"github.com/cloudwego/biz-demo/gomall/app/payment/conf"
+	"github.com/cloudwego/biz-demo/gomall/common/mtl"
+	"github.com/cloudwego/biz-demo/gomall/common/serversuite"
 	"github.com/cloudwego/biz-demo/gomall/rpc_gen/kitex_gen/payment/paymentservice"
 	"github.com/cloudwego/kitex/pkg/klog"
-	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/server"
 	"github.com/joho/godotenv"
-	consul "github.com/kitex-contrib/registry-consul"
 	"net"
+)
+
+var (
+	CurrentServiceName = conf.GetConf().Kitex.Service
+	RegistryAddr       = conf.GetConf().Registry.RegistryAddress[0]
+	MetricsPort        = conf.GetConf().Kitex.MetricsPort
 )
 
 func main() {
 	_ = godotenv.Load()
+	mtl.InitMetric(CurrentServiceName, MetricsPort, RegistryAddr)
 
 	dal.Init()
 
@@ -35,20 +42,10 @@ func kitexInit() (opts []server.Option) {
 	}
 	opts = append(opts, server.WithServiceAddr(addr))
 
-	// service info
-	opts = append(opts, server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{
-		ServiceName: conf.GetConf().Kitex.Service,
+	opts = append(opts, server.WithServiceAddr(addr), server.WithSuite(serversuite.CommonServerSuite{
+		CurrentServiceName: CurrentServiceName,
+		RegistryAddr:       RegistryAddr,
 	}))
-
-	r, err := consul.NewConsulRegister(conf.GetConf().Registry.RegistryAddress[0])
-	if err != nil {
-		panic(err)
-	}
-
-	// service info
-	opts = append(opts, server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{
-		ServiceName: conf.GetConf().Kitex.Service,
-	}), server.WithRegistry(r))
 
 	return
 }

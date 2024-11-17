@@ -4,7 +4,7 @@
 ROOT_PATH="/root/goProjects/gomall/app"
 
 # 微服务列表，每个微服务的目录名称
-declare -a SERVICES=("cart" "checkout" "frontend" "order" "payment" "product" "user")
+declare -a SERVICES=("cart" "checkout" "email" "frontend" "order" "payment" "product" "user")
 
 # 启动所有微服务
 for service in "${SERVICES[@]}"; do
