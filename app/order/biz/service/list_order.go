@@ -46,7 +46,7 @@ func (s *ListOrderService) Run(req *order.ListOrderReq) (resp *order.ListOrderRe
 				City:          v.Consignee.City,
 				State:         v.Consignee.State,
 				Country:       v.Consignee.Country,
-				ZipCode:       v.Consignee.ZipCode,
+				ZipCode:       string(v.Consignee.ZipCode),
 			},
 		})
 	}

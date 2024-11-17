@@ -2,14 +2,18 @@ package service
 
 import (
 	"context"
+	"github.com/cloudwego/biz-demo/gomall/app/checkout/infra/mq"
 	"github.com/cloudwego/biz-demo/gomall/app/checkout/infra/rpc"
 	"github.com/cloudwego/biz-demo/gomall/rpc_gen/kitex_gen/cart"
 	checkout "github.com/cloudwego/biz-demo/gomall/rpc_gen/kitex_gen/checkout"
+	"github.com/cloudwego/biz-demo/gomall/rpc_gen/kitex_gen/email"
 	"github.com/cloudwego/biz-demo/gomall/rpc_gen/kitex_gen/order"
 	"github.com/cloudwego/biz-demo/gomall/rpc_gen/kitex_gen/payment"
 	"github.com/cloudwego/biz-demo/gomall/rpc_gen/kitex_gen/product"
 	"github.com/cloudwego/kitex/pkg/kerrors"
 	"github.com/cloudwego/kitex/pkg/klog"
+	"github.com/nats-io/nats.go"
+	"google.golang.org/protobuf/proto"
 )
 
 type CheckoutService struct {
@@ -100,6 +104,22 @@ func (s *CheckoutService) Run(req *checkout.CheckoutReq) (resp *checkout.Checkou
 	if err != nil {
 		return nil, err
 	}
+
+	data, _ := proto.Marshal(&email.EmailReq{
+		From:        "from@example.com",
+		To:          req.Email,
+		ContentType: "text/plain",
+		Subject:     "You have just created an order in the shop",
+		Content:     "You have just created an order in the shop",
+	})
+
+	msg := &nats.Msg{
+		Subject: "email",
+		Data:    data,
+		Header:  make(nats.Header),
+	}
+
+	_ = mq.Nc.PublishMsg(msg)
 
 	klog.Info(paymentResult)
 

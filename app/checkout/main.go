@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/cloudwego/biz-demo/gomall/app/checkout/conf"
+	"github.com/cloudwego/biz-demo/gomall/app/checkout/infra/mq"
 	"github.com/cloudwego/biz-demo/gomall/app/checkout/infra/rpc"
 	"github.com/cloudwego/biz-demo/gomall/rpc_gen/kitex_gen/checkout/checkoutservice"
 	"github.com/cloudwego/kitex/pkg/klog"
@@ -16,6 +17,7 @@ func main() {
 
 	_ = godotenv.Load()
 	rpc.InitClient()
+	mq.Init()
 
 	//dal.Init()
 	rpc.InitClient()

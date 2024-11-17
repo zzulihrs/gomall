@@ -40,5 +40,12 @@ gen_order:
 	@cd app/order && cwgo server --type RPC --service order --module github.com/cloudwego/biz-demo/gomall/app/order --pass "-use github.com/cloudwego/biz-demo/gomall/rpc_gen/kitex_gen" -I ../../idl --idl ../../idl/order.proto
 
 
+gen_email:
+	@cd rpc_gen && cwgo client --type RPC --service email --module github.com/cloudwego/biz-demo/gomall/rpc_gen --I ../idl --idl ../idl/email.proto
+	@cd app/email && cwgo server --type RPC --service email --module github.com/cloudwego/biz-demo/gomall/app/email --pass "-use github.com/cloudwego/biz-demo/gomall/rpc_gen/kitex_gen" -I ../../idl --idl ../../idl/email.proto
+
+
+
+
 run: ## run {svc} server. example: make run svc=product
 	@scripts/run.sh ${svc}

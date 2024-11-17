@@ -18,3 +18,8 @@ services:
       - 8500:8500
     environment:
       CONSUL_BIND_INTERFACE: eth0
+  nats:
+    image: docker.1ms.run/nats:latest
+    ports:
+      - "4222:4222"
+      - "8222:8222"
