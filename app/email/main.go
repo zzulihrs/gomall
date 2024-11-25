@@ -26,6 +26,7 @@ var (
 func main() {
 	mq.Init()
 	mtl.InitMetric(CurrentServiceName, MetricsPort, RegistryAddr)
+	mtl.InitTracing(CurrentServiceName)
 
 	consumer.Init()
 	opts := kitexInit()

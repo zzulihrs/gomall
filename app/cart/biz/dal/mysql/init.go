@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"github.com/cloudwego/biz-demo/gomall/app/cart/biz/model"
 	"github.com/cloudwego/biz-demo/gomall/app/cart/conf"
+	"github.com/cloudwego/biz-demo/gomall/common/mtl"
+	"gorm.io/plugin/opentelemetry/tracing"
 	"os"
 
 	"gorm.io/driver/mysql"
@@ -24,6 +26,9 @@ func Init() {
 			SkipDefaultTransaction: true,
 		},
 	)
+	if err := DB.Use(tracing.NewPlugin(tracing.WithoutMetrics(), tracing.WithTracerProvider(mtl.TracerProvider))); err != nil {
+		panic(err)
+	}
 	err = DB.AutoMigrate(&model.Cart{})
 	if err != nil {
 		panic(err)

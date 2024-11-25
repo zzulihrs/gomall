@@ -1,0 +1,21 @@
+FROM docker.1ms.run/golang:1.21
+
+ARG SVC
+
+WORKDIR /usr/src/gomall
+
+ENV GOPROXY https://goproxy.io,direct
+
+COPY app/${SVC}/go.mod app/${SVC}/go.sum ./app/${SVC}/
+COPY rpc_gen rpc_gen
+RUN cd app/${SVC}/ && go mod download && go mod tidy
+
+COPY app/${SVC}/ app/${SVC}/
+
+RUN cd app/${SVC}/ && go build -v -o /opt/gomall/${SVC}/server
+
+COPY app/${SVC}/conf /opt/gomall/${SVC}/conf
+
+WORKDIR /opt/gomall/${SVC}
+
+CMD ["./server"]

@@ -2,10 +2,12 @@ module github.com/cloudwego/biz-demo/gomall/app/frontend
 
 go 1.21.0
 
-replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
+replace (
+	github.com/apache/thrift => github.com/apache/thrift v0.13.0
+	github.com/cloudwego/biz-demo/gomall/common => ../../common
+)
 
 require (
-	github.com/cloudwego/biz-demo/gomall/common v0.0.0-20240701024504-2486f0201b8f
 	github.com/cloudwego/biz-demo/gomall/rpc_gen v0.0.0-20240701024504-2486f0201b8f
 	github.com/cloudwego/hertz v0.9.3
 	github.com/cloudwego/kitex v0.9.1
@@ -14,12 +16,14 @@ require (
 	github.com/hertz-contrib/logger/accesslog v0.0.0-20240623133421-6fb592ed8d10
 	github.com/hertz-contrib/logger/logrus v1.0.1
 	github.com/hertz-contrib/monitor-prometheus v0.1.2
+	github.com/hertz-contrib/obs-opentelemetry/provider v0.2.3
+	github.com/hertz-contrib/obs-opentelemetry/tracing v0.4.1
 	github.com/hertz-contrib/pprof v0.1.1
 	github.com/hertz-contrib/sessions v1.0.3
 	github.com/joho/godotenv v1.5.1
-	github.com/kitex-contrib/registry-consul v0.0.0-20230406075225-7d341f036654
 	github.com/kr/pretty v0.3.1
 	github.com/redis/go-redis/v9 v9.7.0
+	go.opentelemetry.io/otel/trace v1.25.0
 	google.golang.org/protobuf v1.35.1
 	gopkg.in/validator.v2 v2.0.1
 	gopkg.in/yaml.v2 v2.4.0
@@ -81,7 +85,9 @@ require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
+	github.com/kitex-contrib/obs-opentelemetry v0.2.6 // indirect
 	github.com/kitex-contrib/obs-opentelemetry/logging/zap v0.0.0-20240305123358-828863cc5853 // indirect
+	github.com/kitex-contrib/registry-consul v0.0.0-20230406075225-7d341f036654 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.6 // indirect
 	github.com/kr/text v0.2.0 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
@@ -105,12 +111,17 @@ require (
 	github.com/tidwall/match v1.1.1 // indirect
 	github.com/tidwall/pretty v1.2.1 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
+	go.opentelemetry.io/contrib/instrumentation/runtime v0.45.0 // indirect
+	go.opentelemetry.io/contrib/propagators/b3 v1.20.0 // indirect
+	go.opentelemetry.io/contrib/propagators/ot v1.20.0 // indirect
 	go.opentelemetry.io/otel v1.25.0 // indirect
+	go.opentelemetry.io/otel/exporters/otlp/otlpmetric v0.42.0 // indirect
+	go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc v0.42.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.25.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.25.0 // indirect
 	go.opentelemetry.io/otel/metric v1.25.0 // indirect
 	go.opentelemetry.io/otel/sdk v1.25.0 // indirect
-	go.opentelemetry.io/otel/trace v1.25.0 // indirect
+	go.opentelemetry.io/otel/sdk/metric v1.20.0 // indirect
 	go.opentelemetry.io/proto/otlp v1.1.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.27.0 // indirect

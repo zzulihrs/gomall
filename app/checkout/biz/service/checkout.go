@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"fmt"
 	"github.com/cloudwego/biz-demo/gomall/app/checkout/infra/mq"
 	"github.com/cloudwego/biz-demo/gomall/app/checkout/infra/rpc"
 	"github.com/cloudwego/biz-demo/gomall/rpc_gen/kitex_gen/cart"
@@ -13,6 +14,8 @@ import (
 	"github.com/cloudwego/kitex/pkg/kerrors"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/nats-io/nats.go"
+	"go.opentelemetry.io/otel"
+	"go.opentelemetry.io/otel/propagation"
 	"google.golang.org/protobuf/proto"
 )
 
@@ -26,7 +29,7 @@ func NewCheckoutService(ctx context.Context) *CheckoutService {
 // Run create note info
 func (s *CheckoutService) Run(req *checkout.CheckoutReq) (resp *checkout.CheckoutResp, err error) {
 	// Finish your business logic.
-	cartResult, err := rpc.CardClient.GetCart(s.ctx, &cart.GetCartReq{
+	cartResult, err := rpc.CartClient.GetCart(s.ctx, &cart.GetCartReq{
 		UserId: req.UserId,
 	})
 	if err != nil {
@@ -96,10 +99,13 @@ func (s *CheckoutService) Run(req *checkout.CheckoutReq) (resp *checkout.Checkou
 		},
 	}
 
-	_, err = rpc.CardClient.EmptyCart(s.ctx, &cart.EmptyCartReq{UserId: req.UserId})
+	emptyResult, err := rpc.CartClient.EmptyCart(s.ctx, &cart.EmptyCartReq{UserId: req.UserId})
 	if err != nil {
-		klog.Error(err.Error())
+		err = fmt.Errorf("EmptyCart.err:%v", err)
+		return
 	}
+	klog.Info(emptyResult)
+
 	paymentResult, err := rpc.PaymentClient.Charge(s.ctx, payReq)
 	if err != nil {
 		return nil, err
@@ -118,6 +124,7 @@ func (s *CheckoutService) Run(req *checkout.CheckoutReq) (resp *checkout.Checkou
 		Data:    data,
 		Header:  make(nats.Header),
 	}
+	otel.GetTextMapPropagator().Inject(s.ctx, propagation.HeaderCarrier(msg.Header))
 
 	_ = mq.Nc.PublishMsg(msg)
 

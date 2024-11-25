@@ -22,7 +22,7 @@ type CategoryQuery struct {
 
 func (c CategoryQuery) GetProductsByCategoryName(name string) (categories []Category, err error) {
 	err = c.db.WithContext(c.ctx).Model(&Category{}).Where(&Category{Name: name}).Preload("Products").Find(&categories).Error
-	return
+	return categories, err
 }
 
 func NewCategoryQuery(ctx context.Context, db *gorm.DB) *CategoryQuery {

@@ -1,6 +1,8 @@
 module github.com/cloudwego/biz-demo/gomall/app/email
 
-go 1.21.0
+go 1.21
+
+toolchain go1.21.0
 
 replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
 
@@ -12,6 +14,7 @@ require (
 	github.com/kr/pretty v0.3.1
 	github.com/nats-io/nats.go v1.31.0
 	github.com/redis/go-redis/v9 v9.7.0
+	go.opentelemetry.io/otel v1.25.0
 	go.uber.org/zap v1.27.0
 	google.golang.org/protobuf v1.33.0
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1
@@ -19,6 +22,7 @@ require (
 	gopkg.in/yaml.v2 v2.4.0
 	gorm.io/driver/mysql v1.5.7
 	gorm.io/gorm v1.25.12
+	gorm.io/plugin/opentelemetry v0.1.8
 )
 
 require (
@@ -99,7 +103,6 @@ require (
 	go.opentelemetry.io/contrib/instrumentation/runtime v0.45.0 // indirect
 	go.opentelemetry.io/contrib/propagators/b3 v1.20.0 // indirect
 	go.opentelemetry.io/contrib/propagators/ot v1.20.0 // indirect
-	go.opentelemetry.io/otel v1.25.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/otlpmetric v0.42.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc v0.42.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.25.0 // indirect

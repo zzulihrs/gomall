@@ -22,6 +22,7 @@ func main() {
 
 	_ = godotenv.Load()
 	mtl.InitMetric(CurrentServiceName, MetricsPort, RegistryAddr)
+	mtl.InitTracing(CurrentServiceName)
 
 	dal.Init()
 

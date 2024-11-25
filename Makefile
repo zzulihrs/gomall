@@ -49,3 +49,12 @@ gen_email:
 
 run: ## run {svc} server. example: make run svc=product
 	@scripts/run.sh ${svc}
+
+
+.PHONY: build-frontend
+build-frontend:
+	docker builld -f ./deploy/Dockerfile.frontend -t frontend:${v} .
+
+.PHONY: build-svc
+build-svc:
+	docker builld -f ./deploy/Dockerfile.frontend -t ${svc}:${v} --build-arg SVC=${svc} .

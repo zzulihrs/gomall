@@ -24,7 +24,9 @@ func main() {
 	_ = godotenv.Load()
 	rpc.InitClient()
 	mq.Init()
+
 	mtl.InitMetric(CurrentServiceName, MetricsPort, RegistryAddr)
+	mtl.InitTracing(CurrentServiceName)
 
 	//dal.Init()
 	rpc.InitClient()

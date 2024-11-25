@@ -1,6 +1,8 @@
 module github.com/cloudwego/biz-demo/gomall/app/cart
 
-go 1.21.0
+go 1.21
+
+toolchain go1.21.0
 
 replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
 
@@ -19,6 +21,7 @@ require (
 	gopkg.in/yaml.v2 v2.4.0
 	gorm.io/driver/mysql v1.5.7
 	gorm.io/gorm v1.25.12
+	gorm.io/plugin/opentelemetry v0.1.4
 )
 
 require (
@@ -118,7 +121,6 @@ require (
 	google.golang.org/grpc v1.63.0 // indirect
 	google.golang.org/protobuf v1.33.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
-	gorm.io/plugin/opentelemetry v0.1.4 // indirect
 	sigs.k8s.io/yaml v1.4.0 // indirect
 )
 

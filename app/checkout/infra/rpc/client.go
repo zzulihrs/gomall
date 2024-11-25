@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	CardClient    cartservice.Client
+	CartClient    cartservice.Client
 	ProductClient productcatalogservice.Client
 	PaymentClient paymentservice.Client
 	OrderClient   orderservice.Client
@@ -26,14 +26,14 @@ func InitClient() {
 	once.Do(func() {
 		registryAddr = conf.GetConf().Registry.RegistryAddress[0]
 		serviceName = conf.GetConf().Kitex.Service
-		initChartClient()
+		initChatClient()
 		initProductClient()
 		initPaymentClient()
 		initOrderClient()
 	})
 }
 
-func initChartClient() {
+func initChatClient() {
 	opts := []client.Option{
 		client.WithSuite(clientsuite.CommonGrpcClientSuite{
 			RegistryAddr:       registryAddr,
@@ -41,7 +41,7 @@ func initChartClient() {
 		}),
 	}
 
-	CardClient, err = cartservice.NewClient("cart", opts...)
+	CartClient, err = cartservice.NewClient("cart", opts...)
 	if err != nil {
 		panic(err)
 	}

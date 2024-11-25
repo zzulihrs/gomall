@@ -8,7 +8,6 @@ import (
 	"github.com/cloudwego/biz-demo/gomall/app/frontend/middleware"
 	frontendUtils "github.com/cloudwego/biz-demo/gomall/app/frontend/utils"
 	"github.com/cloudwego/biz-demo/gomall/common/mtl"
-	prometheus "github.com/hertz-contrib/monitor-prometheus"
 	"os"
 
 	"github.com/cloudwego/biz-demo/gomall/app/frontend/biz/router"
@@ -23,10 +22,14 @@ import (
 	"github.com/hertz-contrib/gzip"
 	"github.com/hertz-contrib/logger/accesslog"
 	hertzlogrus "github.com/hertz-contrib/logger/logrus"
+	hertzprom "github.com/hertz-contrib/monitor-prometheus"
+	hertzotelprovider "github.com/hertz-contrib/obs-opentelemetry/provider"
+	hertzoteltracing "github.com/hertz-contrib/obs-opentelemetry/tracing"
 	"github.com/hertz-contrib/pprof"
 	"github.com/hertz-contrib/sessions"
 	"github.com/hertz-contrib/sessions/redis"
 	"github.com/joho/godotenv"
+	oteltrace "go.opentelemetry.io/otel/trace"
 )
 
 var (
@@ -37,21 +40,36 @@ var (
 
 func main() {
 	_ = godotenv.Load()
+	address := conf.GetConf().Hertz.Address
+
 	rpc.Init()
 	consul, registryInfo := mtl.InitMetric(CurrentServiceName, MetricsPort, RegistryAddr)
 	defer consul.Deregister(registryInfo)
-	// init dal
-	// dal.Init()
-	address := conf.GetConf().Hertz.Address
-	h := server.New(server.WithHostPorts(address),
-		server.WithTracer(prometheus.NewServerTracer(
-			"",
-			"",
-			prometheus.WithRegistry(mtl.Registry),
-			prometheus.WithDisableServer(true),
-		)),
-	)
 
+	p := hertzotelprovider.NewOpenTelemetryProvider(
+		hertzotelprovider.WithSdkTracerProvider(mtl.TracerProvider),
+		hertzotelprovider.WithEnableMetrics(false),
+	)
+	defer p.Shutdown(context.Background())
+
+	tracer, cfg := hertzoteltracing.NewServerTracer(hertzoteltracing.WithCustomResponseHandler(func(ctx context.Context, c *app.RequestContext) {
+		c.Header("shop-trace-id", oteltrace.SpanFromContext(ctx).SpanContext().TraceID().String())
+	}))
+
+	h := server.New(server.WithHostPorts(address), server.WithTracer(
+		hertzprom.NewServerTracer(
+			"",
+			"",
+			hertzprom.WithRegistry(mtl.Registry),
+			hertzprom.WithDisableServer(true),
+		),
+	),
+		tracer,
+	)
+	h.LoadHTMLGlob("template/*")
+	h.Delims("{{", "}}")
+
+	h.Use(hertzoteltracing.ServerMiddleware(cfg))
 	registerMiddleware(h)
 
 	// add a ping route to test

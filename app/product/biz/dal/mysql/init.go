@@ -16,6 +16,8 @@ package mysql
 
 import (
 	"fmt"
+	"github.com/cloudwego/biz-demo/gomall/common/mtl"
+	"gorm.io/plugin/opentelemetry/tracing"
 	"os"
 
 	"github.com/cloudwego/biz-demo/gomall/app/product/biz/model"
@@ -38,6 +40,9 @@ func Init() {
 		},
 	)
 	if err != nil {
+		panic(err)
+	}
+	if err := DB.Use(tracing.NewPlugin(tracing.WithoutMetrics(), tracing.WithTracerProvider(mtl.TracerProvider))); err != nil {
 		panic(err)
 	}
 	if os.Getenv("GO_ENV") != "online" {
