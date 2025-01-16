@@ -13,6 +13,9 @@ for service in "${SERVICES[@]}"; do
     cd "$ROOT_PATH/$service"
     # 使用 nohup 启动微服务，并将输出重定向到日志文件
     nohup air > "$service.log" 2>&1 &
+    pid=$!
+    echo "Started $service with PID $pid" >> "$service.log"
+    echo "Started $service with PID $pid"
     # 返回到脚本开始时的目录
     cd - > /dev/null
     echo "$service started."
